@@ -1,18 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  /* Premium SaaS Color Palette */
   --color-brand-dark: #0F0F12;
   --color-brand-surface: #1C1C21;
   --color-brand-purple: #8B5CF6;
-  --color-brand-emerald: #10B981;
 }
 
-/* Global resets for the Dark Theme */
 body {
-  @apply bg-brand-dark text-gray-100 antialiased selection:bg-brand-purple/30;
-}
-
-h1, h2, h3 {
-  @apply font-bold tracking-tight;
+  @apply bg-brand-dark text-white antialiased;
 }
