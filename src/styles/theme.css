@@ -1,0 +1,156 @@
+/* ==========================================================================
+   1. GLOBAL SYSTEM VARIABLES (SaaS Overhaul Architecture)
+   ========================================================================== */
+
+/* DARK MODE: Absolute match to your deep space indigo & electric green/purple palette */
+.dark-theme, [data-theme="dark"], :root:not([data-theme="light"]) {
+  --bg-primary: #0F0F12;
+  --bg-secondary: #1C1C21;
+  --bg-card: rgba(28, 28, 33, 0.85);
+
+  --text-primary: #FFFFFF;
+  --text-secondary: #B8B8C5;
+
+  --accent-brand: #22C55E;        /* Vivid Emerald Green for Logo Globe & Impact Tags */
+  --accent-primary: #8B5CF6;      /* Vibrant Brand Violet / Main Solid Button */
+  --accent-secondary: #A78BFA;    /* Ambient Soft Lavender Hover Highlight */
+
+  --border-color: rgba(255, 255, 255, 0.08);
+  --navbar-bg: rgba(15, 15, 18, 0.8);
+  
+  --card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  --spotlight-gradient: radial-gradient(circle, rgba(34, 197, 94, 0.05) 0%, rgba(139, 92, 246, 0.08) 40%, transparent 70%);
+}
+
+/* LIGHT MODE: Premium Pastel Overhaul (Soothing mint-cream ambient workspace) */
+.light-theme, [data-theme="light"] {
+  --bg-primary: #F4F7F5;          /* Calming off-white infused with a drop of mint */
+  --bg-secondary: #FFFFFF;        /* Elevated workspace surfaces and raised cards */
+  --bg-card: rgba(255, 255, 255, 0.75);
+
+  --text-primary: #0F172A;        /* Deep slate navy for crisp text readability */
+  --text-secondary: #475569;      /* Smooth charcoal slate for descriptions */
+
+  --accent-brand: #16A34A;        /* Deeper rich organic green for text-safe accents */
+  --accent-primary: #7C3AED;      /* High-contrast solid violet for light buttons */
+  --accent-secondary: #A78BFA;    /* Balanced soft lavender accent */
+
+  --border-color: rgba(22, 163, 74, 0.1); /* Faint eco-tinted component frame lines */
+  --navbar-bg: rgba(244, 247, 245, 0.85);
+  
+  --card-shadow: 0 8px 32px 0 rgba(148, 163, 184, 0.12);
+  --spotlight-gradient: radial-gradient(circle, rgba(22, 163, 74, 0.04) 0%, rgba(124, 58, 237, 0.04) 50%, transparent 70%);
+}
+
+/* ==========================================================================
+   2. BASE CANVAS STYLING
+   ========================================================================== */
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background 0.4s cubic-bezier(0.25, 1, 0.5, 1), color 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  overflow-x: hidden;
+}
+
+/* Premium global selection text layer */
+::selection {
+  background: rgba(34, 197, 94, 0.25);
+  color: var(--text-primary);
+}
+
+/* Modern hardware acceleration utility for theme-swapping elements */
+body, a, button, div, nav {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ==========================================================================
+   3. SHARED PREMIUM COMPONENTS
+   ========================================================================== */
+
+/* --- GLASS CARD SYSTEM --- */
+.glass-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid var(--border-color);
+  border-radius: 24px;
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- BUTTON MATRIX --- */
+.primary-btn {
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+  color: #FFFFFF !important;
+  font-weight: 600;
+  letter-spacing: -0.2px;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 4px 14px rgba(139, 92, 246, 0.25);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, filter 0.3s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(139, 92, 246, 0.4);
+}
+
+.primary-btn:active {
+  transform: translateY(-1px);
+}
+
+/* --- GLASS LAYOUT NAVBAR --- */
+.navbar {
+  background: var(--navbar-bg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--card-shadow);
+  transition: background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* ==========================================================================
+   4. BONUS ACCENT UTILITIES
+   ========================================================================== */
+
+/* Environmental Pill/Tag accent classes */
+.impact-tag {
+  background: rgba(34, 197, 94, 0.1);
+  color: var(--accent-brand);
+  border: 1px solid rgba(34, 197, 94, 0.15);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Secondary interactive text links across pages */
+.interactive-link {
+  color: var(--accent-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.interactive-link:hover {
+  color: var(--accent-primary);
+}
+
+.light-theme .interactive-link {
+  color: var(--accent-primary);
+}
+
+.light-theme .interactive-link:hover {
+  color: var(--text-primary);
+}

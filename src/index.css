@@ -1,9 +1,16 @@
 @import "tailwindcss";
 
+/* Point strictly to the styles subfolder with the correct plural spelling */
+@import "./styles/theme.css";
+
 @theme {
-  --color-brand-dark: #0F0F12;
-  --color-brand-surface: #1C1C21;
-  --color-brand-purple: #8B5CF6;
+  /* Mapping Tailwind classes directly to your smooth theme variables */
+  --color-brand-dark: var(--bg-primary);
+  --color-brand-surface: var(--bg-secondary);
+  --color-brand-purple: var(--accent-primary);
+  --color-brand-accent: var(--accent-brand);
+  
+  --shadow-premium: var(--card-shadow);
 }
 
 body {
