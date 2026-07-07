@@ -1,0 +1,445 @@
+/* ===================================================
+   LOGIN / REGISTER PREMIUM THEME (SYNCHRONIZED)
+=================================================== */
+
+:root {
+  --bg-primary: #0f0f12;
+  --text: #ffffff;
+  --text-secondary: #a0aec0;
+  --purple: #8b5cf6;
+  --purple-glow: rgba(139, 92, 246, 0.3);
+  --accent-brand: #22c55e; /* Theme custom leaf color */
+}
+
+/* GLOBAL CURSOR RESET: Hides default browser pointer so your custom leaf works */
+html, body, .login-page, a, button, input, label, select, input[type="checkbox"] {
+  cursor: none !important;
+}
+
+.login-page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+/* ==========================
+   PERFECTED GLASS NAVBAR
+========================== */
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 18px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+  /* Ultra-clear high-fidelity glass blur backdrop */
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  background: rgba(15, 15, 18, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  
+  /* Pushes navigation layered completely over particles and background assets */
+  z-index: 10000; 
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo span {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+
+.logo-leaf {
+  color: var(--accent-brand);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--purple);
+}
+
+/* ==========================
+   BACKGROUND FLOATING BLURS
+========================== */
+
+.floating-blur {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.blur1 {
+  width: 400px;
+  height: 400px;
+  background: #8b5cf6;
+  top: -120px;
+  left: -120px;
+  animation: floatBlob 10s ease-in-out infinite;
+}
+
+.blur2 {
+  width: 350px;
+  height: 350px;
+  background: #a855f7;
+  bottom: -100px;
+  right: -100px;
+  animation: floatBlob 12s ease-in-out infinite;
+}
+
+.blur3 {
+  width: 300px;
+  height: 300px;
+  background: rgba(34, 197, 94, 0.15);
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+@keyframes floatBlob {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+}
+
+/* ==========================
+   SECTIONS & GLASS CARDS
+========================== */
+
+.login-section, .register-section {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px 20px 40px;
+  position: relative;
+  width: 100%;
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 460px;
+  padding: 40px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  z-index: 5;
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+}
+
+/* ==========================
+   HEADER CONTROLS
+========================== */
+
+.login-header, .register-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.login-icon, .register-icon {
+  font-size: 2rem;
+  color: var(--accent-brand);
+  margin-bottom: 12px;
+  display: inline-flex;
+}
+
+.login-header h1, .register-header h1 {
+  font-size: 1.85rem;
+  color: var(--text);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.login-header p, .register-header p {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+/* ==========================
+   INPUT WRAPPERS & IN-LINE ICONS
+========================== */
+
+.login-form, .register-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+/* Forces icons cleanly inside the text boxes */
+.input-icon {
+  position: absolute;
+  left: 16px;
+  color: #718096;
+  font-size: 1.05rem;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding: 14px 16px 14px 44px !important; /* Left padding creates spacing for inline icons */
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.input-wrapper input:focus {
+  border-color: var(--purple);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 14px var(--purple-glow);
+}
+
+.input-wrapper input::placeholder {
+  color: #4a5568;
+}
+
+/* ==========================
+   OPTIONS & CHECKBOXES
+========================== */
+
+.login-options, .terms-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+  font-size: 0.88rem;
+}
+
+.terms-box {
+  justify-content: flex-start;
+  gap: 10px;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Breathing room separating checkbox node and text */
+  color: var(--text-secondary);
+}
+
+.remember-me input[type="checkbox"], .terms-box input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--purple); /* Syncs standard system color box to your theme color */
+}
+
+.login-options a, .terms-box a {
+  text-decoration: none;
+  color: var(--purple);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.login-options a:hover, .terms-box a:hover {
+  color: #a855f7;
+}
+
+/* ==========================
+   ACTION BUTTONS
+========================== */
+
+.primary-btn {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #8b5cf6, #a855f7);
+  color: white;
+  font-weight: 600;
+  font-size: 0.98rem;
+  transition: all 0.3s ease;
+  margin-bottom: 12px; /* Extra padding stops text/button collisions underneath */
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.4);
+}
+
+.secondary-btn {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+
+.secondary-btn:hover {
+  color: var(--text);
+}
+
+/* ==========================
+   DIVIDER INTERFACES
+========================== */
+
+.divider {
+  margin: 20px 0;
+  text-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  left: 0;
+  z-index: 1;
+}
+
+.divider span {
+  /* Inherits dynamic background variable to erase the blocking effect */
+  background: var(--bg-primary); 
+  padding: 0 14px;
+  color: #4a5568;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  position: relative;
+  z-index: 2;
+}
+
+/* ==========================
+   SOCIAL BUTTON TILES
+========================== */
+
+.social-buttons {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text);
+  font-size: 0.9rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+}
+
+.social-btn:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ==========================
+   FOOTER TEXT PIPELINES
+========================== */
+
+.login-footer, .register-footer {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+}
+
+.login-footer a, .register-footer a {
+  color: var(--purple);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-footer a:hover, .register-footer a:hover {
+  text-decoration: underline;
+}
+
+/* ==========================
+   RESPONSIVE DESIGN BREAKPOINTS
+========================== */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 15px 5%;
+  }
+  .nav-links {
+    gap: 16px;
+  }
+  .glass-card {
+    padding: 30px 24px;
+  }
+  .login-header h1, .register-header h1 {
+    font-size: 1.6rem;
+  }
+}

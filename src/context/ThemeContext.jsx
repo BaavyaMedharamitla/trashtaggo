@@ -1,14 +1,15 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
-// 1. Create the base context layer
 export const ThemeContext = createContext();
 
-// 2. Main Provider Component managing HTML classes and localStorage saves
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "dark"
+  );
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+
     if (theme === "light") {
       document.body.classList.add("light-theme");
       document.body.classList.remove("dark-theme");
@@ -16,6 +17,7 @@ export function ThemeProvider({ children }) {
       document.body.classList.add("dark-theme");
       document.body.classList.remove("light-theme");
     }
+
     localStorage.setItem("theme", theme);
   }, [theme]);
 
@@ -30,12 +32,14 @@ export function ThemeProvider({ children }) {
   );
 }
 
-// 3. ADD THIS HOOK LAYER AT THE BOTTOM:
-// This instantly resolves the Navbar line 2 compilation crash!
 export function useTheme() {
   const context = useContext(ThemeContext);
-  if (context === undefined) {
-    throw new Error("useTheme must be wrapped securely within a ThemeProvider wrapper.");
+
+  if (!context) {
+    throw new Error(
+      "useTheme must be used within ThemeProvider"
+    );
   }
+
   return context;
 }

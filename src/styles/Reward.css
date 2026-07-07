@@ -1,0 +1,196 @@
+.reward-container {
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 30px;
+}
+
+.wallet-card {
+  background: linear-gradient(
+    135deg,
+    #7c3aed,
+    #9333ea
+  );
+  border-radius: 24px;
+  padding: 40px;
+  text-align: center;
+  color: white;
+  margin-bottom: 40px;
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.35);
+}
+
+.wallet-card h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.wallet-card p {
+  opacity: 0.9;
+}
+
+.coin-balance {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.reward-section {
+  margin-bottom: 50px;
+}
+
+.section-heading,
+.reward-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.reward-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.reward-card {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 41, 59, 0.95)
+  );
+
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 20px;
+
+  padding: 24px;
+
+  transition: all 0.3s ease;
+
+  box-shadow:
+    0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.reward-card:hover {
+  transform: translateY(-8px);
+  border-color: #7c3aed;
+
+  box-shadow:
+  0 0 20px rgba(124,58,237,0.4),
+  0 12px 30px rgba(124,58,237,0.3);
+}
+
+.reward-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.reward-card p {
+  color: #94a3b8;
+  margin-bottom: 10px;
+}
+
+.redeem-btn {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: #7c3aed;
+  color: white;
+
+  font-weight: 600;
+  font-size: 15px;
+
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.redeem-btn:hover {
+  background: #6d28d9;
+  transform: scale(1.03);
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+}
+
+.achievement-card {
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.95),
+    rgba(30, 41, 59, 0.95)
+  );
+
+  border: 1px solid rgba(124, 58, 237, 0.2);
+  border-radius: 20px;
+
+  padding: 24px;
+  text-align: center;
+
+  transition: all 0.3s ease;
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  border-color: #7c3aed;
+}
+
+.achievement-card h3 {
+  margin-bottom: 10px;
+}
+
+.achievement-card p {
+  color: #94a3b8;
+}
+
+.redeem-btn,
+.reward-card,
+.achievement-card {
+  cursor: pointer !important;
+}
+
+button {
+  cursor: pointer !important;
+}
+
+@media (max-width: 768px) {
+  .wallet-card h1 {
+    font-size: 2rem;
+  }
+
+  .coin-balance {
+    font-size: 2.2rem;
+  }
+
+  .reward-container {
+    padding: 15px;
+  }
+}
+.user-level {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 20px;
+  font-weight: 600;
+}
+.progress-bar {
+  width: 100%;
+  height: 12px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 20px;
+  margin: 15px 0;
+}
+
+.progress-fill {
+  width: 62%;
+  height: 100%;
+  border-radius: 20px;
+  background: white;
+}
+.reward-status {
+  color: #22c55e;
+  font-weight: 600;
+}

@@ -1,16 +1,32 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useTheme } from "../../context/ThemeContext";
+import React, { useState, useEffect } from "react";
 import { FaLeaf } from "react-icons/fa";
 
-// Pointing explicitly to your styling sheets based on your file explorer tree
-import "../../styles/theme.css"; 
-import "../../styles/admin.css";
+// 1. Only import the sidebar component safely
+import AdminSidebar from "../../components/Adminsidebar";
+
+// COMMENTED OUT: Bypassing the broken external chart component entirely to prevent compilation crashes
+// import { AnalyticsChart } from "../../components/AnalyticsChart";
+
+// 2. Global design styles mapping
+import "../../styles/theme.css";
+import "../../styles/Admin.css";
+
+/* 3. LOCAL INDEPENDENT SUBCOMPONENT
+  This completely bypasses the teammate's broken Statcard.jsx file 
+  and lets you render your own statistics clean and error-free!
+*/
+function LocalStatCard({ title, value, subtitle }) {
+  return (
+    <div className="stat-card">
+      <h4>{title}</h4>
+      <h2>{value}</h2>
+      <p>{subtitle}</p>
+    </div>
+  );
+}
 
 function AdminDashboard() {
-  const { theme, toggleTheme } = useTheme();
-  
-  // Custom interactive tracking elements for the green leaf cursor pointer
+  // Custom cursor configuration pointers
   const [mousePos, setMousePos] = useState({ x: -100, y: -100 });
   const [isHovered, setIsHovered] = useState(false);
 
@@ -37,10 +53,9 @@ function AdminDashboard() {
   }, []);
 
   return (
-    // Dynamic class binding ensures colors toggle seamlessly between light/dark themes
-    <div className={`admin-dashboard theme-${theme || "dark"}`}>
+    <div className="admin-dashboard">
       
-      {/* Custom Interactive Leaf Cursor Node Component */}
+      {/* Dynamic Cursor Node Tracking Layer */}
       <div 
         style={{
           left: `${mousePos.x}px`,
@@ -71,70 +86,78 @@ function AdminDashboard() {
         }} />
       </div>
 
-      {/* Sidebar Layout Core Anchor Grid */}
-      <div className="admin-sidebar">
-        <div className="sidebar-header">
-          <div className="sidebar-logo">
-            <FaLeaf className="leaf-logo" />
-            <h2>TrashTagGo</h2>
-          </div>
-          {/* Interactive theme icon button switcher toggling layout states */}
-          <button onClick={toggleTheme} className="theme-icon-btn" aria-label="Toggle Theme">
-            {theme === "dark" ? "🌙" : "☀️"}
-          </button>
-        </div>
+      {/* Main Shared Structural Sidebar Component */}
+      <AdminSidebar />
 
-        <div className="sidebar-menu">
-          <Link to="/admin">Dashboard Overview</Link>
-          <Link to="/admin">Pending Submissions</Link>
-          <Link to="/admin">User Management</Link>
-          <Link to="/admin">Global Analytics</Link>
-          <Link to="/">Back to Home</Link>
-        </div>
-      </div>
-
-      {/* Main Structural Dashboard Window Workspace Workspace */}
       <div className="dashboard-content">
-        
-        {/* Header Title Section */}
+        {/* Header */}
         <div className="dashboard-header">
           <p className="breadcrumb">TrashTagGo / Admin</p>
           <h1>Admin Dashboard</h1>
         </div>
 
-        {/* Dynamic Analytics Quantities Showcase Row */}
+        {/* Stats Cards - Now completely safely powered by LocalStatCard */}
         <div className="stats-grid">
-          <div className="stat-card">
-            <h4>Total Users</h4>
-            <h2>1,250</h2>
-            <p>+12% this month</p>
-          </div>
+          <LocalStatCard
+            title="Total Users"
+            value="1,250"
+            subtitle="+12% this month"
+          />
 
-          <div className="stat-card">
-            <h4>Pending Reviews</h4>
-            <h2>45</h2>
-            <p style={{ color: "#ef4444" }}>Needs attention</p>
-          </div>
+          <LocalStatCard
+            title="Pending Reviews"
+            value="45"
+            subtitle="Needs attention"
+          />
 
-          <div className="stat-card">
-            <h4>GreenCoins Distributed</h4>
-            <h2>12,500</h2>
-            <p>+340 today</p>
-          </div>
+          <LocalStatCard
+            title="GreenCoins Distributed"
+            value="12,500"
+            subtitle="+340 today"
+          />
 
-          <div className="stat-card">
-            <h4>Waste Removed</h4>
-            <h2>850 KG</h2>
-            <p>+20 KG today</p>
-          </div>
+          <LocalStatCard
+            title="Waste Removed"
+            value="850 KG"
+            subtitle="+20 KG today"
+          />
         </div>
 
-        {/* Weekly Progress Overview Monitoring Display Card */}
-        <div className="dashboard-card">
+        {/* Weekly Cleanup Activity - Pure CSS Bar Chart Placeholder */}
+        <div className="dashboard-card activity-card">
           <h2>Weekly Cleanup Activity</h2>
           
-          <div className="chart-placeholder">
-            <h3>Chart Data Visualizer Pipeline Loading...</h3>
+          {/* Integrated CSS fallback chart layout */}
+          <div style={{ 
+            display: "flex", 
+            alignItems: "flex-end", 
+            justifyContent: "space-between", 
+            height: "180px", 
+            padding: "20px 10px 10px 10px",
+            background: "rgba(255, 255, 255, 0.02)",
+            borderRadius: "12px",
+            margin: "20px 0"
+          }}>
+            {[
+              { day: "Mon", val: "45%" },
+              { day: "Tue", val: "60%" },
+              { day: "Wed", val: "35%" },
+              { day: "Thu", val: "75%" },
+              { day: "Fri", val: "50%" },
+              { day: "Sat", val: "90%" },
+              { day: "Sun", val: "100%" }
+            ].map((d, idx) => (
+              <div key={idx} style={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
+                <div style={{ 
+                  height: d.val, 
+                  width: "22px", 
+                  background: "linear-gradient(to top, var(--accent-brand, #22c55e), #4ade80)", 
+                  borderRadius: "6px 6px 0 0",
+                  animation: "growBarChart 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards"
+                }} />
+                <span style={{ fontSize: "0.75rem", marginTop: "8px", opacity: 0.6 }}>{d.day}</span>
+              </div>
+            ))}
           </div>
 
           <div className="chart-summary">
@@ -142,10 +165,12 @@ function AdminDashboard() {
               <h3>170</h3>
               <p>Total Cleanups</p>
             </div>
+
             <div>
               <h3>24</h3>
               <p>Daily Average</p>
             </div>
+
             <div>
               <h3>Sunday</h3>
               <p>Most Active Day</p>
@@ -153,87 +178,114 @@ function AdminDashboard() {
           </div>
         </div>
 
-        {/* Double Column Splitting Context Grid */}
+        {/* Bottom Section */}
         <div className="bottom-grid">
-          
-          {/* Top Contributor Ranking Logs */}
+          {/* Top Contributors */}
           <div className="dashboard-card">
             <h2>Top Contributors</h2>
+
             <div className="list-item">
               <span>🥇 Ravi</span>
-              <span>1,250 Coins</span>
+              <span>1250 Coins</span>
             </div>
+
             <div className="list-item">
               <span>🥈 Priya</span>
-              <span>1,120 Coins</span>
+              <span>1120 Coins</span>
             </div>
+
             <div className="list-item">
               <span>🥉 Akash</span>
               <span>980 Coins</span>
             </div>
           </div>
 
-          {/* Verification Request Action Queue Line items */}
+          {/* Pending Reviews */}
           <div className="dashboard-card">
             <h2>Pending Reviews</h2>
+
             <div className="review-item">
               <span>Beach Cleanup</span>
               <button className="quick-btn" style={{ padding: "8px 16px", fontSize: "0.85rem", width: "auto" }}>Review</button>
             </div>
+
             <div className="review-item">
               <span>Park Cleanup</span>
               <button className="quick-btn" style={{ padding: "8px 16px", fontSize: "0.85rem", width: "auto" }}>Review</button>
             </div>
+
             <div className="review-item">
               <span>Plastic Collection</span>
               <button className="quick-btn" style={{ padding: "8px 16px", fontSize: "0.85rem", width: "auto" }}>Review</button>
             </div>
           </div>
-
         </div>
 
-        {/* Recent Real-time Operational Stream Activities */}
+        {/* Recent Activity */}
         <div className="dashboard-card">
           <h2>Recent Activity</h2>
-          <div className="activity-item">Ravi completed Beach Cleanup • 2 min ago</div>
-          <div className="activity-item">Priya earned 150 GreenCoins • 5 min ago</div>
-          <div className="activity-item">Akash submitted cleanup photos • 12 min ago</div>
-          <div className="activity-item">20 KG waste removed today • 1 hour ago</div>
+
+          <div className="activity-item">
+            Ravi completed Beach Cleanup • 2 min ago
+          </div>
+
+          <div className="activity-item">
+            Priya earned 150 GreenCoins • 5 min ago
+          </div>
+
+          <div className="activity-item">
+            Akash submitted cleanup photos • 12 min ago
+          </div>
+
+          <div className="activity-item">
+            20 KG waste removed today • 1 hour ago
+          </div>
         </div>
 
-        {/* Ecological Cumulative Overview Breakdown Metrics */}
+        {/* Environmental Impact */}
         <div className="dashboard-card">
           <h2>Environmental Impact</h2>
+
           <div className="list-item">
             <span>Plastic Recycled</span>
             <span>520 KG</span>
           </div>
+
           <div className="list-item">
             <span>Trees Saved</span>
             <span>120</span>
           </div>
+
           <div className="list-item">
             <span>CO₂ Reduced</span>
             <span>240 KG</span>
           </div>
+
           <div className="list-item">
             <span>Community Cleanups</span>
             <span>850</span>
           </div>
         </div>
 
-        {/* Fast Action Executive Directives Controls Module */}
+        {/* Quick Actions */}
         <div className="dashboard-card">
           <h2>Quick Actions</h2>
-          <div className="quick-actions" style={{ marginTop: "1rem" }}>
+
+          <div className="quick-actions">
             <button className="quick-btn">Manage Users</button>
             <button className="quick-btn">Verify Submissions</button>
             <button className="quick-btn">Analytics</button>
             <button className="quick-btn">Export Report</button>
           </div>
         </div>
-
       </div>
+
+      {/* Smooth CSS Bar Grow Transitions */}
+      <style>{`
+        @keyframes growBarChart {
+          from { height: 0; }
+        }
+      `}</style>
     </div>
   );
 }

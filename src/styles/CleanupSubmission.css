@@ -1,0 +1,176 @@
+/* ===== MAIN CONTAINER ===== */
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0f172a;
+  padding: 20px;
+}
+
+/* ===== CARD ===== */
+.card {
+  width: 100%;
+  max-width: 750px;
+  background: #111827;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  color: white;
+}
+
+/* ===== TITLE ===== */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #9ca3af;
+  margin-bottom: 15px;
+}
+
+/* ===== REWARD BOX ===== */
+.reward-box {
+  background: #1f2937;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* ===== FORM ===== */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ===== ROW ===== */
+.row {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===== INPUTS (FULL FIX) ===== */
+.form input,
+.form select,
+.form textarea {
+  width: 100%;
+  height: 45px;
+  padding: 0 12px;
+  border-radius: 6px;
+  border: 1px solid #374151;
+
+  background-color: #020617 !important;
+  color: #ffffff !important;
+
+  font-size: 15px;
+  line-height: 45px;
+  box-sizing: border-box;
+
+  caret-color: #ffffff !important;           /* ✅ cursor visible */
+  -webkit-text-fill-color: #ffffff !important; /* ✅ Chrome fix */
+}
+
+/* ===== TEXTAREA ===== */
+.form textarea {
+  min-height: 90px;
+  padding: 10px;
+  line-height: 1.5;
+  resize: none;
+}
+
+/* ===== DATE INPUT ===== */
+input[type="date"] {
+  color: #ffffff !important;
+  color-scheme: dark;
+  caret-color: #ffffff !important;
+}
+
+/* ===== NUMBER INPUT ===== */
+input[type="number"] {
+  color: #ffffff !important;
+  caret-color: #ffffff !important;
+}
+
+/* ===== PLACEHOLDER ===== */
+::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+input,
+textarea,
+select {
+    cursor: text;
+    caret-color: #ffffff;
+}
+
+/* ===== FOCUS STYLE ===== */
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #8b5cf6;
+  border-color: #6366f1;
+}
+
+/* ===== WEIGHT BOX ===== */
+.weight-box {
+  display: flex;
+}
+
+.weight-box input {
+  border-radius: 6px 0 0 6px;
+}
+
+.weight-box span {
+  background: #2563eb;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  border-radius: 0 6px 6px 0;
+}
+
+/* ===== UPLOAD ===== */
+.upload {
+  flex: 1;
+}
+
+/* ===== BUTTONS ===== */
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===== SUBMIT BUTTON ===== */
+.submit {
+  flex: 1;
+  background: linear-gradient(to right, #a855f7, #ec4899);
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+/* ===== CLEAR BUTTON ===== */
+.clear {
+  flex: 1;
+  background: #64748b;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+/* ===== FORCE CURSOR FIX (FINAL) ===== */
+
+* {
+  caret-color: red !important;
+}
+
+input,
+textarea {
+  color: white !important;
+  background: #020617 !important;
+  -webkit-text-fill-color: white !important;
+}
